@@ -99,7 +99,7 @@ export class ProgressCircle extends Component {
       ...restProps
     } = this.props;
 
-    const border = borderWidth || (indeterminate ? 1 : 0);
+    const border = borderWidth || (indeterminate ? 1: 0);
 
     const radius = (size / 2) - border;
     const offset = {
@@ -164,7 +164,7 @@ export class ProgressCircle extends Component {
             />
           ) : false}
         </Surface>
-        {!indeterminate && showsText ? (
+        { showsText ? (
           <View
             style={{
               position: 'absolute',
@@ -177,17 +177,24 @@ export class ProgressCircle extends Component {
               justifyContent: 'center',
             }}
           >
-            <Text
-              style={[{
-                color,
-                fontSize: textSize / 4.5,
-                fontWeight: '300',
-              }, textStyle]}
-            >
+            <View>
               {formatText(progressValue)}
-            </Text>
+            </View>
           </View>
-        ) : false}
+        ) :(<View
+            style={{
+              position: 'absolute',
+              left: textOffset,
+              top: textOffset,
+              width: textSize,
+              height: textSize,
+              borderRadius: textSize / 2,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Text style={{color: '#908d8d',fontSize: 12, color:'#3498db'}}>初始化...</Text>
+          </View>)}
         {children}
       </View>
     );
